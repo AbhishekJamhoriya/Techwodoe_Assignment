@@ -287,11 +287,13 @@ export default function EnhancedTable() {
     }
 
     const DeleteUser = () => {
+
         selected.map((value) => {
 
             setRows(rows.filter(item => item.email !== value));
 
         })
+        console.log(selected)
     }
 
     const UpdateUser = () => {
@@ -328,7 +330,7 @@ export default function EnhancedTable() {
         const val = document.querySelector('#adduserform') as HTMLFormElement;
         val.reset();
         AddUser();
-    
+
         setRows([...rows, {
             image: adduservalue.Url,
             name: adduservalue.Name,
@@ -338,7 +340,7 @@ export default function EnhancedTable() {
             satus: "online",
             id: "rows.length+1"
         }])
-      
+
     }
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -348,7 +350,7 @@ export default function EnhancedTable() {
         }));
     };
     const handleEditSubmit = (event: FormEvent<HTMLFormElement>) => {
-       
+
         event.preventDefault();
         const val = document.querySelector('#edituserform') as HTMLFormElement;
         val.reset();
@@ -398,30 +400,30 @@ export default function EnhancedTable() {
 
             <Paper sx={{ mb: 2 }} style={{ margin: "2rem", padding: "1rem", backgroundColor: "#F8F8FF" }}>
                 <Toolbar style={{ display: "flex", position: "relative", }}>
-                    
-                        <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-                           <div style={{display:"flex",justifyContent:"center" ,height:"30px" }}>
-                           <h5>
+
+                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+                        <div style={{ display: "flex", justifyContent: "center", height: "30px" }}>
+                            <h5>
                                 Users
                             </h5>
-                            <p style={{marginLeft:"15px",marginTop:"3px",fontWeight:600,color:"green",backgroundColor:"#E0F9F1",height:"70%",borderRadius:"20%",fontSize:"14px",paddingLeft:"2px",paddingRight:"2px"}}>{rows.length} users</p>
-                           </div>
-                          
-                            <p >
-                                Manage your team menmbers and their account permission here.
-                            </p>
+                            <p style={{ marginLeft: "15px", marginTop: "3px", fontWeight: 600, color: "green", backgroundColor: "#E0F9F1", height: "70%", borderRadius: "20%", fontSize: "14px", paddingLeft: "2px", paddingRight: "2px" }}>{rows.length} users</p>
                         </div>
-                        <div style={{ position: "absolute", right: "15px", top: "20%" }}>
-                            <Button outline color="primary" style={{marginRight:"0.5rem"}} onClick={DownloadCSV}>
-                                <CloudDownloadOutlinedIcon sx={{ marginRight:"10px" ,marginTop:"-4px"}}/>
-                                Download CSV
-                            </Button>
-                            <Button color="primary" onClick={AddUser}>
-                                <AddOutlinedIcon sx={{ marginRight:"10px" ,marginTop:"-4px"}}/>
-                                Add User
-                            </Button>
-                        </div>
-                    
+
+                        <p >
+                            Manage your team menmbers and their account permission here.
+                        </p>
+                    </div>
+                    <div style={{ position: "absolute", right: "15px", top: "20%" }}>
+                        <Button outline color="primary" style={{ marginRight: "0.5rem" }} onClick={DownloadCSV}>
+                            <CloudDownloadOutlinedIcon sx={{ marginRight: "10px", marginTop: "-4px" }} />
+                            Download CSV
+                        </Button>
+                        <Button color="primary" onClick={AddUser}>
+                            <AddOutlinedIcon sx={{ marginRight: "10px", marginTop: "-4px" }} />
+                            Add User
+                        </Button>
+                    </div>
+
                 </Toolbar>
                 <TableContainer>
                     <Table
@@ -468,15 +470,15 @@ export default function EnhancedTable() {
                                                 component="th"
                                                 id={labelId}
                                                 scope="row"
-                                                style={{width:"55%",height:"40px",padding:"none"}}
+                                                style={{ width: "55%", height: "40px", padding: "none" }}
                                             >
-                                                <div style={{ display: "flex", alignItems: 'center' ,marginTop:"-20px",marginBottom:"-20px"}}>
+                                                <div style={{ display: "flex", alignItems: 'center', marginTop: "-20px", marginBottom: "-20px" }}>
                                                     <div >
                                                         <img style={{ width: "40px", height: "40px", borderRadius: "100%" }} src={row.image} />
                                                     </div>
-                                                    <div style={{height:"50px",marginLeft:"1rem",paddingTop:"0.5rem"}}>
-                                                        <h6 style={{marginBottom:"0px",fontSize:"13px",fontWeight:600}}>{row.name}</h6>
-                                                        <p style={{fontSize:"12px",color:"#757575",fontWeight:500}}>{row.email}</p>
+                                                    <div style={{ height: "50px", marginLeft: "1rem", paddingTop: "0.5rem" }}>
+                                                        <h6 style={{ marginBottom: "0px", fontSize: "13px", fontWeight: 600 }}>{row.name}</h6>
+                                                        <p style={{ fontSize: "12px", color: "#757575", fontWeight: 500 }}>{row.email}</p>
                                                     </div>
                                                 </div>
 
@@ -485,15 +487,15 @@ export default function EnhancedTable() {
                                                 id={labelId}
                                                 scope="row"
                                                 padding="none">
-                                                    <p style={{fontSize:"12px",fontWeight:600,color:"green",backgroundColor:"#E0F9F1",width:"70px",paddingLeft:"5px",borderRadius:"20%",marginLeft:"-10px",marginTop:"18px"}}>
-                                                
-                                                        <FiberManualRecordIcon style={{fontSize:"10px",fill:"green",marginRight:"5px"}}/>
-                                                        Active</p>
-                                                </TableCell>
+                                                <p style={{ fontSize: "12px", fontWeight: 600, color: "green", backgroundColor: "#E0F9F1", width: "70px", paddingLeft: "5px", borderRadius: "20%", marginLeft: "-10px", marginTop: "18px" }}>
+
+                                                    <FiberManualRecordIcon style={{ fontSize: "10px", fill: "green", marginRight: "5px" }} />
+                                                    Active</p>
+                                            </TableCell>
                                             <TableCell component="th"
                                                 id={labelId}
                                                 scope="row"
-                                                padding="none" style={{fontSize:"13px",color:"#757575",fontWeight:500}}>{row.role}</TableCell>
+                                                padding="none" style={{ fontSize: "13px", color: "#757575", fontWeight: 500 }}>{row.role}</TableCell>
                                             <TableCell component="th"
                                                 id={labelId}
                                                 scope="row"
@@ -502,15 +504,11 @@ export default function EnhancedTable() {
                                                 id={labelId}
                                                 scope="row"
                                                 padding="none">
-                                                <Button onClick={DeleteUser}style={{backgroundColor:"transparent",fill:"black",marginRight:"5px",
-                                                border:"none"
-                                            }}>   <DeleteIcon sx={{ fill:"black" }}/></Button>
-                                                <Button onClick={UpdateUser}
-                                                style={{backgroundColor:"transparent",fill:"black",marginRight:"5px",
-                                                border:"none"
-                                            }}>
-                                                    <EditOutlinedIcon sx={{ fill:"black" }}/>
-                                                </Button>
+
+                                                <DeleteIcon sx={{ fill: "black" }} onClick={DeleteUser} style={{height:"30px",width:"30px",marginRight:"1rem"}}  />
+
+                                                <EditOutlinedIcon sx={{ fill: "black" }} onClick={UpdateUser} style={{height:"30px",width:"30px",marginRight:"1rem"}} />
+
                                             </TableCell>
 
                                         </TableRow>
@@ -542,8 +540,8 @@ export default function EnhancedTable() {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       /> */}
-            <div id='popupbox' style={{ display: "none", position: "absolute", height: "55%", width: "33%", top: "22%", left: "33%", border:"2px solid black", backgroundColor: "#AAAAAA", paddingLeft: "2rem", paddingRight: "2rem",color:"white" }}>
-                <Form onSubmit={handleEditSubmit} id="edituserform" style={{marginTop:"20%"}}>
+            <div id='popupbox' style={{ display: "none", position: "absolute", height: "55%", width: "33%", top: "22%", left: "33%", border: "2px solid black", backgroundColor: "#AAAAAA", paddingLeft: "2rem", paddingRight: "2rem", color: "white" }}>
+                <Form onSubmit={handleEditSubmit} id="edituserform" style={{ marginTop: "20%" }}>
                     <FormGroup>
                         <Label for="name">Name</Label>
                         <Input name="Name" id="name" placeholder="with a placeholder" onChange={handleChange} />
@@ -557,7 +555,7 @@ export default function EnhancedTable() {
 
                 </Form>
             </div>
-            <div id='AddUser' style={{ display: "none", position: "absolute", height: "55%", width: "33%", top: "22%", left: "33%", border:"2px solid black", backgroundColor: "#AAAAAA", paddingLeft: "2rem", paddingRight: "2rem",color:"white" }}>
+            <div id='AddUser' style={{ display: "none", position: "absolute", height: "55%", width: "33%", top: "22%", left: "33%", border: "2px solid black", backgroundColor: "#AAAAAA", paddingLeft: "2rem", paddingRight: "2rem", color: "white" }}>
                 <Form onSubmit={handleAddSubmit} id="adduserform">
                     <FormGroup>
                         <Label for="imageurl">Image Url</Label>

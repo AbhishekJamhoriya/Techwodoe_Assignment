@@ -1,7 +1,6 @@
 // import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import DataTable from './Components/Table';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import {Route,Routes} from "react-router-dom"

@@ -1,5 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState, useEffect } from 'react'
-import { alpha } from '@mui/material/styles';
+import React, { FormEvent, useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,11 +9,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import CloudDownloadOutlinedIcon from '@mui/icons-material/CloudDownloadOutlined';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
@@ -23,7 +19,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { visuallyHidden } from '@mui/utils';
 import axios from "axios";
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
-import { border } from '@mui/system';
+
 
 interface Values {
     Name: string,
@@ -68,21 +64,6 @@ function createData(
     };
 }
 
-// const rows = [
-//   createData('Cupcake', 305, 3.7, 67, 4.3),
-//   createData('Donut', 452, 25.0, 51, 4.9),
-//   createData('Eclair', 262, 16.0, 24, 6.0),
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9),
-//   createData('Honeycomb', 408, 3.2, 87, 6.5),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   createData('Jelly Bean', 375, 0.0, 94, 0.0),
-//   createData('KitKat', 518, 26.0, 65, 7.0),
-//   createData('Lollipop', 392, 0.2, 98, 0.0),
-//   createData('Marshmallow', 318, 0, 81, 2.0),
-//   createData('Nougat', 360, 19.0, 9, 37.0),
-//   createData('Oreo', 437, 18.0, 63, 4.0),
-// ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) {
@@ -108,10 +89,7 @@ function getComparator<Key extends keyof any>(
         : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
+
 function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
     const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
     stabilizedThis.sort((a, b) => {
@@ -221,9 +199,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     );
 }
 
-interface EnhancedTableToolbarProps {
-    numSelected: number;
-}
 
 
 export default function EnhancedTable() {
@@ -353,15 +328,7 @@ export default function EnhancedTable() {
         const val = document.querySelector('#adduserform') as HTMLFormElement;
         val.reset();
         AddUser();
-        // const add_value = {
-        //     image: adduservalue.Url,
-        //     name: adduservalue.Name,
-        //     email: adduservalue.Email,
-        //     role: adduservalue.Role,
-        //     lastlogin: "12:08:90",
-        //     satus: "online",
-        //     id: rows.length+1,
-        // }
+    
         setRows([...rows, {
             image: adduservalue.Url,
             name: adduservalue.Name,
@@ -371,8 +338,7 @@ export default function EnhancedTable() {
             satus: "online",
             id: "rows.length+1"
         }])
-        // console.log(typeof(add_value),typeof(rows));
-        // setFormvalue([''])
+      
     }
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -382,7 +348,7 @@ export default function EnhancedTable() {
         }));
     };
     const handleEditSubmit = (event: FormEvent<HTMLFormElement>) => {
-        // alert('A name was submitted: ' + this.state.value);
+       
         event.preventDefault();
         const val = document.querySelector('#edituserform') as HTMLFormElement;
         val.reset();
@@ -446,7 +412,7 @@ export default function EnhancedTable() {
                             </p>
                         </div>
                         <div style={{ position: "absolute", right: "15px", top: "20%" }}>
-                            <Button outline color="primary" style={{marginRight:"0.5rem"}}>
+                            <Button outline color="primary" style={{marginRight:"0.5rem"}} onClick={DownloadCSV}>
                                 <CloudDownloadOutlinedIcon sx={{ marginRight:"10px" ,marginTop:"-4px"}}/>
                                 Download CSV
                             </Button>
